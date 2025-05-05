@@ -53,7 +53,7 @@ async def about_command(message: types.Message):
     await message.answer(
         "ℹ️ *О проекте:*\n"
         "Этот бот переводит текст между русским и турецким языками.\n"
-        "Разработан с использованием Python, aiogram и Google Translate API.\n"
+        "Разработан с использованием Python, aiogram и Google Translate.\n"
         "Бот не хранит данные и работает мгновенно.",
         parse_mode="Markdown"
     )
