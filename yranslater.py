@@ -2,13 +2,13 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart, Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, BotCommand
-from google_trans_new import google_translator
+from googletrans import Translator
 
-API_TOKEN = "7436585258:AAEKJpssHgxbIh5WwvAL2YvlAZCOL0v6Vwk"
+API_TOKEN = "7710002190:AAFkqfdSMsEYFBCUEd_kruCMQYTvm_7_bzU"  # Замените на ваш токен
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
-translator = google_translator()
+translator = Translator()
 user_directions = {}
 
 # Клавиатура с кнопками
@@ -73,8 +73,8 @@ async def translate_text(message: types.Message):
         return
 
     src, dest = ("ru", "tr") if direction == "Русский → Турецкий" else ("tr", "ru")
-    translated = translator.translate(message.text, lang_tgt=dest, lang_src=src)
-    await message.answer(f"📍 Перевод:\n{translated}")
+    translated = translator.translate(message.text, src=src, dest=dest)
+    await message.answer(f"📍 Перевод:\n{translated.text}")
 
 # Установка команд в Telegram меню
 async def set_commands(bot: Bot):
@@ -89,8 +89,6 @@ async def set_commands(bot: Bot):
 async def main():
     await set_commands(bot)
     await dp.start_polling(bot)
-
-#перед запуском кода локально писать в терминал pip install -r requirements.txt
 
 if __name__ == "__main__":
     asyncio.run(main())
